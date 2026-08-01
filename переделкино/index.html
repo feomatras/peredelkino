@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Переделкино — товары для дома</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ШАПКА -->
+    <header class="header">
+        <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+            <div class="logo">Переделкино <span>🏠</span></div>
+        </a>
+        <nav class="header-nav">
+            <div class="city-selector">
+                <span>📍</span>
+                <select id="citySelect">
+                    <option value="moscow">Москва</option>
+                    <option value="novosibirsk">Новосибирск</option>
+                </select>
+            </div>
+            <a href="catalog.html">Каталог</a>
+            <a href="profile.html" class="profile-icon" title="Личный кабинет">👤</a>
+            <a href="cart.html" class="cart-icon">
+                🛒 <span class="badge">0</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- КОНТЕНТ -->
+    <div class="container">
+        <h1 style="margin-top: 20px;">Товары для ремонта и уюта</h1>
+        <p style="color: #666; margin-bottom: 20px;">Выберите категорию или перейдите в каталог</p>
+
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
+            <a href="catalog.html" style="display:inline-block; background:#e67e22; color:#fff; padding:14px 40px; border-radius:40px; font-weight:600; font-size:18px;">Перейти в каталог</a>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://cont.ws/uploads/pic/2020/11/5%20%284%29.webp" alt="Стол">
+                <h3>Стол обеденный</h3>
+                <div class="price">3 000 ₽</div>
+                <div class="stock in-stock" data-product-id="1">В наличии</div>
+                <button class="btn btn-primary" onclick="addToCart(1)">В корзину</button>
+            </div>
+            <div class="product-card">
+                <img src="https://i.pinimg.com/originals/3c/12/cf/3c12cf00ac55e7672aa5355d47a02555.jpg?nii=t" alt="Стул">
+                <h3>Стул</h3>
+                <div class="price">2 000 ₽</div>
+                <div class="stock out-of-stock" data-product-id="2">Нет в наличии</div>
+                <button class="btn btn-secondary" onclick="alert('Товар временно недоступен')">Нет в наличии</button>
+            </div>
+            <div class="product-card">
+                <img src="https://imageproxy.idaprikol.ru/crop:x-20,resize:640x,quality:90x75/images/5a33ef80fd48c8b7ee14ce89f180876a3169977390694a6d90ab61e19a7b3e26_1.jpg" alt="Ламинат">
+                <h3>Ламинат дуб</h3>
+                <div class="price">1 200 ₽</div>
+                <div class="stock in-stock" data-product-id="3">В наличии</div>
+                <button class="btn btn-primary" onclick="addToCart(3)">В корзину</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ЧАТ -->
+    <button class="chat-button" onclick="openChat()">💬</button>
+
+    <!-- МОДАЛЬНОЕ ОКНО ЧАТА -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-header">
+            💬 Консультант Мария
+            <span class="close-chat" onclick="closeChat()">×</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="message bot">Здравствуйте! Чем могу помочь?</div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Введите сообщение..." onkeydown="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()">Отправить</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

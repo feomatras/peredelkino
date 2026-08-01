@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог — Переделкино</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+            <div class="logo">Переделкино <span>🏠</span></div>
+        </a>
+        <nav class="header-nav">
+            <div class="city-selector">
+                <span>📍</span>
+                <select id="citySelect">
+                    <option value="moscow">Москва</option>
+                    <option value="novosibirsk">Новосибирск</option>
+                </select>
+            </div>
+            <a href="catalog.html">Каталог</a>
+            <a href="profile.html" class="profile-icon" title="Личный кабинет">👤</a>
+            <a href="cart.html" class="cart-icon">
+                🛒 <span class="badge">0</span>
+            </a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Каталог товаров</h1>
+
+        <div class="filters">
+            <label>Категория:</label>
+            <select id="filterCategory" onchange="applyFilters()">
+                <option value="all">Все</option>
+                <option value="Мебель">Мебель</option>
+                <option value="Напольные покрытия">Напольные покрытия</option>
+                <option value="Краски">Краски</option>
+            </select>
+
+            <label>Цена до:</label>
+            <input type="range" id="filterPrice" min="0" max="30000" value="30000" oninput="document.getElementById('priceLabel').textContent=this.value; applyFilters()">
+            <span id="priceLabel">30000</span> ₽
+
+            <label>
+                <input type="checkbox" id="filterStock" onchange="applyFilters()"> Только в наличии
+            </label>
+        </div>
+
+        <div class="product-grid" id="product-grid">
+            <div class="product-card" data-product-id="1">
+                <img src="https://cont.ws/uploads/pic/2020/11/5%20%284%29.webp" alt="Стол">
+                <h3><a href="product.html?id=1">Стол обеденный</a></h3>
+                <div class="price">3 000 ₽</div>
+                <div class="stock in-stock" data-product-id="1">В наличии: 10 шт.</div>
+                <button class="btn btn-primary" onclick="addToCart(1)">В корзину</button>
+            </div>
+
+            <div class="product-card" data-product-id="2">
+                <img src="https://i.pinimg.com/originals/3c/12/cf/3c12cf00ac55e7672aa5355d47a02555.jpg?nii=t" alt="Стул">
+                <h3><a href="product.html?id=2">Стул</a></h3>
+                <div class="price">2 000 ₽</div>
+                <div class="stock out-of-stock" data-product-id="2">Нет в наличии</div>
+                <button class="btn btn-secondary" onclick="alert('Товар временно недоступен')">Нет в наличии</button>
+            </div>
+
+            <div class="product-card" data-product-id="3">
+                <img src="https://imageproxy.idaprikol.ru/crop:x-20,resize:640x,quality:90x75/images/5a33ef80fd48c8b7ee14ce89f180876a3169977390694a6d90ab61e19a7b3e26_1.jpg" alt="Ламинат">
+                <h3><a href="product.html?id=3">Ламинат дуб</a></h3>
+                <div class="price">1 200 ₽</div>
+                <div class="stock in-stock" data-product-id="3">В наличии: 50 шт.</div>
+                <button class="btn btn-primary" onclick="addToCart(3)">В корзину</button>
+            </div>
+
+            <div class="product-card" data-product-id="4">
+                <img src="https://avatars.mds.yandex.net/get-mpic/5234050/img_id8322660951622119429.png/orig" alt="Краска">
+                <h3><a href="product.html?id=4">Краска белая</a></h3>
+                <div class="price">450 ₽</div>
+                <div class="stock in-stock" data-product-id="4">В наличии: 100 шт.</div>
+                <button class="btn btn-primary" onclick="addToCart(4)">В корзину</button>
+            </div>
+
+            <div class="product-card" data-product-id="5">
+                <img src="https://avatars.mds.yandex.net/i?id=e448c5a34e745d088b36a71ec7e4528f6051eef3-5360274-images-thumbs&n=13" alt="Диван">
+                <h3><a href="product.html?id=5">Диван угловой</a></h3>
+                <div class="price">15 000 ₽</div>
+                <div class="stock out-of-stock" data-product-id="5">Нет в наличии</div>
+                <button class="btn btn-secondary" onclick="alert('Товар временно недоступен')">Нет в наличии</button>
+            </div>
+        </div>
+    </div>
+
+    <button class="chat-button" onclick="openChat()">💬</button>
+
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-header">
+            💬 Консультант Мария
+            <span class="close-chat" onclick="closeChat()">×</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="message bot">Здравствуйте! Чем могу помочь?</div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Введите сообщение..." onkeydown="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()">Отправить</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
