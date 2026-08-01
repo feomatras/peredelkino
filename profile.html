@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет — Переделкино</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+            <div class="logo">Переделкино <span>🏠</span></div>
+        </a>
+        <nav class="header-nav">
+            <div class="city-selector">
+                <span>📍</span>
+                <select id="citySelect">
+                    <option value="moscow">Москва</option>
+                    <option value="novosibirsk">Новосибирск</option>
+                </select>
+            </div>
+            <a href="catalog.html">Каталог</a>
+            <a href="profile.html" class="profile-icon" title="Личный кабинет">👤</a>
+            <a href="cart.html" class="cart-icon">
+                🛒 <span class="badge">0</span>
+            </a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Личный кабинет</h1>
+        <div class="profile-container">
+
+            <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 24px;">
+                <div style="font-size: 48px;">👤</div>
+                <div>
+                    <h2 style="margin:0;">Иван Петров</h2>
+                    <p style="color: #666; margin:0;">+7 (495) 123-45-67 • ivan@mail.ru</p>
+                </div>
+            </div>
+
+            <h3 style="margin-bottom: 16px;">Мои заказы</h3>
+
+            <div class="order-card">
+                <div class="order-header">
+                    <div>
+                        <strong>Заказ №1001</strong>
+                        <span style="color: #666; margin-left: 12px;">от 17.07.2026</span>
+                    </div>
+                    <span class="order-status waiting">⏳ Ожидает подтверждения</span>
+                </div>
+                <div class="order-products">
+                    <span>Стол обеденный x1</span>
+                    <span>Стул x2</span>
+                </div>
+                <div class="order-total">3 000 ₽</div>
+                <div class="order-tracking">🚚 Трек-номер: TRK-1001-5678</div>
+            </div>
+
+            <div class="order-card">
+                <div class="order-header">
+                    <div>
+                        <strong>Заказ №1002</strong>
+                        <span style="color: #666; margin-left: 12px;">от 15.07.2026</span>
+                    </div>
+                    <span class="order-status delivered">✅ Доставлен</span>
+                </div>
+                <div class="order-products">
+                    <span>Ламинат дуб x5</span>
+                </div>
+                <div class="order-total">6 000 ₽</div>
+                <div class="order-tracking">✅ Доставлен 20.07.2026</div>
+            </div>
+
+            <div style="margin-top: 16px; text-align: center;">
+                <a href="catalog.html" style="color: #e67e22;">← Продолжить покупки</a>
+            </div>
+        </div>
+    </div>
+
+    <button class="chat-button" onclick="openChat()">💬</button>
+
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-header">
+            💬 Консультант Мария
+            <span class="close-chat" onclick="closeChat()">×</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="message bot">Здравствуйте! Чем могу помочь?</div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Введите сообщение..." onkeydown="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()">Отправить</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

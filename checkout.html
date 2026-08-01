@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформление заказа — Переделкино</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+            <div class="logo">Переделкино <span>🏠</span></div>
+        </a>
+        <nav class="header-nav">
+            <div class="city-selector">
+                <span>📍</span>
+                <select id="citySelect">
+                    <option value="moscow">Москва</option>
+                    <option value="novosibirsk">Новосибирск</option>
+                </select>
+            </div>
+            <a href="catalog.html">Каталог</a>
+            <a href="profile.html" class="profile-icon" title="Личный кабинет">👤</a>
+            <a href="cart.html" class="cart-icon">
+                🛒 <span class="badge">0</span>
+            </a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 style="text-align:center;">Оформление заказа</h1>
+
+        <form class="checkout-form" onsubmit="event.preventDefault(); validateCheckout();">
+
+            <div class="form-group">
+                <label for="name">ФИО *</label>
+                <input type="text" id="name" placeholder="Иванов Иван Иванович">
+                <div class="error-text" id="name-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Телефон *</label>
+                <input type="tel" id="phone" placeholder="+7 (___) ___-__-__" oninput="this.value = this.value.replace(/[^0-9+() -]/g, '')">
+                <div class="error-text" id="phone-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" placeholder="example@mail.ru">
+                <div class="error-text" id="email-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Адрес доставки *</label>
+                <input type="text" id="address" placeholder="г. Москва, ул. Ленина, д. 5, кв. 12">
+                <div class="error-text" id="address-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Способ оплаты</label>
+                <div class="payment-methods">
+                    <label>
+                        <input type="radio" name="payment" value="online" checked> Оплата онлайн
+                    </label>
+                    <label>
+                        <input type="radio" name="payment" value="cash"> Наличные при получении
+                    </label>
+                </div>
+            </div>
+
+            <div class="security-badge" id="security-badge">
+                🔒 Защищённое соединение. Данные шифруются.
+            </div>
+
+            <div class="min-sum-warning visible" id="min-sum-warning" style="display:block;">
+                ⚠️ Минимальная сумма заказа для доставки — 1000 ₽. Добавьте товары или выберите самовывоз.
+            </div>
+
+            <div style="text-align: right; font-size: 18px; font-weight: 700; margin: 16px 0;">
+                Итого: <span id="checkout-total">0 ₽</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%; padding:16px; font-size:18px;">
+                ✅ Оформить заказ
+            </button>
+
+            <div style="text-align:center; margin-top:12px;">
+                <a href="cart.html" style="color:#e67e22;">← Вернуться в корзину</a>
+            </div>
+        </form>
+    </div>
+
+    <button class="chat-button" onclick="openChat()">💬</button>
+
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-header">
+            💬 Консультант Мария
+            <span class="close-chat" onclick="closeChat()">×</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="message bot">Здравствуйте! Чем могу помочь?</div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Введите сообщение..." onkeydown="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()">Отправить</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const total = getTotal();
+            const el = document.getElementById('checkout-total');
+            if (el) el.textContent = total + ' ₽';
+            const warning = document.getElementById('min-sum-warning');
+            if (warning) {
+                if (total >= 1000) {
+                    warning.style.display = 'none';
+                } else {
+                    warning.style.display = 'block';
+                }
+            }
+            const paymentRadios = document.querySelectorAll('input[name="payment"]');
+            const badge = document.getElementById('security-badge');
+            paymentRadios.forEach(r => {
+                r.addEventListener('change', function() {
+                    if (this.value === 'online') {
+                        badge.style.display = 'flex';
+                    } else {
+                        badge.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
